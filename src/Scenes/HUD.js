@@ -15,7 +15,7 @@ class HUD extends Phaser.Scene {
         for (let i = 0; i < 3; i++) {
             let hudXpos = 80 + i * 150;
             let hudYPos = 80;
-            let compassHud = new CompassHUD(this, hudXpos, hudYPos, 3800, 3950, 'compass_image', 'compass_needle_image');
+            let compassHud = new CompassHUD(this.mainScene, this, hudXpos, hudYPos, 3456, 3408, 'compass_image', 'compass_needle_image');
             compassHud.setVisible(false);
             compassHud.sprite.setInteractive({ draggable: true }); // Enable dragging
             this.compassHudDisplay.push(compassHud);

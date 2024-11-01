@@ -27,14 +27,19 @@ class MainScene extends Phaser.Scene {
         this.collisionLayer = this.map.createLayer("collisionLayer", this.tileset, 0, 0);
         this.spawnLayer = this.map.getObjectLayer('spawnLayer');
 
+
         // Start the UI scene
         this.scene.launch('hudScene');
         this.HUD = this.scene.get('hudScene');
+        this.HUD.mainScene = this;
+
+
 
         // Set the bounds of the world to match the map dimensions
         this.physics.world.setBounds(0, 0, this.map.widthInPixels, this.map.heightInPixels);
 
         this.startPoint = this.spawnLayer.objects.find(obj => obj.name === "playerSpawn");
+        console.log("x: " +  this.startPoint.x + ", y: " +  this.startPoint.y);
         this.player = this.physics.add.sprite(this.startPoint.x, this.startPoint.y, 'player');
         this.player.setCollideWorldBounds(true); // Ensure player does not go out of bounds
         this.playerControl = new PlayerControl(this, this.player);
@@ -53,6 +58,9 @@ class MainScene extends Phaser.Scene {
         // Set collisions
         this.collisionLayer.setCollisionByProperty({collides: true});
         this.physics.add.collider(this.player, this.collisionLayer);
+
+        this.sprite = this.physics.add.sprite(3456, 3408, 'compass_image', null).setOrigin(0.5, 0.5).setScale(0.4);
+        this.sprite.setVisible(true);
     }
 
     createCompassObjects() {
