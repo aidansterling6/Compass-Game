@@ -1,3 +1,6 @@
+Number.prototype.toDeg = function () { 
+    return this * (180 / Math.PI);
+  }
 class MainScene extends Phaser.Scene {
     constructor() {
         super("mainScene");
@@ -70,5 +73,7 @@ class MainScene extends Phaser.Scene {
 
     update() {
         this.playerControl.update();
+        this.HUD.playerx = this.player.x;
+        this.HUD.playery = this.player.y;
     }
 }
