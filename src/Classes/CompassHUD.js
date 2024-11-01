@@ -11,6 +11,8 @@ class CompassHUD {
         this.target = null;
         this.sprite = this.HUD.physics.add.sprite(x, y, texture, null).setOrigin(0.5, 0.5).setScale(4);
         this.needle = this.HUD.physics.add.sprite(x, y, needleTexture, null).setOrigin(0.5, 0.5).setScale(0.1);
+        let angles = [0, 90, 180, 270];
+        this.angleOffset = angles[(Math.floor(Math.random() * angles.length))];
         this.updateNeedle();
 
         this.sprite.on('drag', (pointer, dragX, dragY) => {
@@ -32,7 +34,7 @@ class CompassHUD {
     updateNeedle(){
         let mainCamera = this.scene.cameras.main;
         console.log(mainCamera);
-        this.needle.angle = Math.atan2(-((mainCamera.worldView.x + this.x / mainCamera.zoom) - this.targetX), (mainCamera.worldView.y + this.y / mainCamera.zoom) - this.targetY).toDeg();
+        this.needle.angle = this.angleOffset + Math.atan2(-((mainCamera.worldView.x + this.x / mainCamera.zoom) - this.targetX), (mainCamera.worldView.y + this.y / mainCamera.zoom) - this.targetY).toDeg();
     }
 
     setVisible(bVisable){
