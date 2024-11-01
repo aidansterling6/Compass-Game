@@ -32,7 +32,7 @@ class CompassHUD {
     updateNeedle(){
         let mainCamera = this.scene.cameras.main;
         console.log(mainCamera);
-        this.needle.angle = Math.atan2(-((mainCamera.worldView.x + this.x / 4) - this.targetX), (mainCamera.worldView.y + this.y / 4) - this.targetY).toDeg();
+        this.needle.angle = Math.atan2(-((mainCamera.worldView.x + this.x / mainCamera.zoom) - this.targetX), (mainCamera.worldView.y + this.y / mainCamera.zoom) - this.targetY).toDeg();
     }
 
     setVisible(bVisable){
